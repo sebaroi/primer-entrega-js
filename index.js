@@ -1,103 +1,172 @@
+const productos = [
+    {sku: 1, categoria: "placas de video", nombreProdu: "Nvidia Asus Dual GeForce GTX 1650 OC Edition 4GB", precio: 80200, descripcion: "placa de video", stock: 4, imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_770553-MLA44835817388_022021-F.webp" },
+    {sku: 2, categoria: "Mothers", nombreProdu: "Asrock A68", precio: 5800, descripcion: "Mother para pc", stock: 7, imagen:"https://http2.mlstatic.com/D_NQ_NP_759323-MLA42590871149_072020-O.webp" },
+    {sku: 3, categoria: "Mothers", nombreProdu: "Asus k56nb", precio: 1520, descripcion: "Mother para pc", stock: 4, imagen:"https://http2.mlstatic.com/D_NQ_NP_914646-MLA49335236971_032022-O.webp" },
+    {sku: 4, categoria: "Notebook", nombreProdu: "Notebook Asus E410MA 14 | Celeron N4020 | 4GB | SSD 128 GB", precio: 104.500, descripcion: "Notebook super elegante", stock: 4, imagen:"https://http2.mlstatic.com/D_NQ_NP_666672-MLA46217453580_052021-O.webp" },
+]
+
+const catalogoProdu = new CatalogoProdu(productos)
 
 
-   const montoCafe = 200 
-   const montoCapuchino = 270
-   const montoCortado = 220
-   const montoLagrima = 220
-   const montoChocolate = 350
+const categorias = ["placas de Video", "mother", "Notebooks", "monitores" ]
 
-   let nombre = prompt("Ingrese su nombre:")
-   let elegir = Number(prompt(nombre +  "  Elija la opcion que desea tomar(Ingresando el numero): 1-CAFE / 2-CAPUCHINO / 3-CORTADO / 4-CHOCOLATE CALIENTE / 5-SALIR "))
+ingProd()
+listarPro()
+modPro()
+busPro()
+fin()
 
-switch (elegir)
+
+function ingProd()
 {
-   case 1:
-      {
-         alert (`el precio del cafe es de ${montoCafe}`)
-         montoEscrito = Number (prompt("Ingrese el monto de la infusion selecionada"))
-         while (montoEscrito < montoCafe)
-         {
-               alert (`El monto del dinero es insuficiente, le falta abonar $${montoCafe-montoEscrito}`)
-               montoEscrito = Number (prompt("Ingrese el monto de la infusion selecionada"))
-         }
-      
-         if (montoEscrito > montoCafe ) 
-         {
-            alert (`${nombre} Su vuelto es $${montoEscrito - montoCafe}`) 
-         }
-         
-         alert(`${nombre} "Gracias por su compra" ¡PRECAUCION ESTA MUY CALIENTE!`)
-         
-         elegir = Number(prompt(nombre +  " Elija la opcion que desea tomar(Ingresando el numero): 1-CAFE / 2-CAPUCHINO / 3-CORTADO / 4-CHOCOLATE CALIENTE / 5-SALIR "))
-      }
-   break      
-
-   case 2:
-      {
-         alert (`el precio del capuchino es de ${montoCapuchino}`)
-         montoEscrito = Number (prompt("Ingrese el monto de la infusion selecionada"))
-         while (montoEscrito < montoCapuchino)
-         {
-         alert (`El monto del dinero es insuficiente, le falta abonar $${montoCapuchino-montoEscrito}`)
-         montoEscrito = Number (prompt("Ingrese el monto de la infusion selecionada"))
-         }
-
-         if (montoEscrito > montoCapuchino ) {
-            alert (`${nombre} Su vuelto es $${montoEscrito - montoCapuchino}`) 
-         }
-         
-         alert(`${nombre} "Gracias por su compra" ¡PRECAUCION ESTA MUY CALIENTE!`)
-         
-         elegir = Number (prompt(nombre + "Elija la opcion que desea tomar (Ingresando el numero): 1-CAFE / 2-CAPUCHINO / 3-CORTADO / 4-CHOCOLATE CALIENTE / 5-SALIR "))
-         eleccion()
-      }
-   break  
-
-   case 3:
-      {
-         alert (`el precio del cortado es de ${montoCortado}`)
-         montoEscrito = Number (prompt("Ingrese el monto de la bebida selecionada"))
-         while (montoEscrito < montoCortado)
-         {
-            alert (`El monto del dinero es insuficiente, le falta abonar $${montoCortado-montoEscrito}`)
-            montoEscrito = Number (prompt("Ingrese el monto de la bebida selecionada"))
-         }
-
-         if (montoEscrito > montoCortado ) {
-            alert (`${nombre} Su vuelto es $${montoEscrito - montoCortado}`) 
-         }
-         
-         alert(`${nombre} "Gracias por su compra" ¡PRECAUCION ESTA MUY CALIENTE!`)
-         
-         elegir = Number(prompt(nombre + "Elija la opcion que desea tomar(Ingresando el numero): 1-CAFE / 2-CAPUCHINO / 3-CORTADO / 4-CHOCOLATE CALIENTE / 5-SALIR "))
-         eleccion()
-      }
-   break
-
-   case 4:
-      {
-         alert (`el precio del chocolate es de ${montoChocolate}`)
-         montoEscrito = Number (prompt("Ingrese el monto de la bebida selecionada"))
-         while (montoEscrito < montoChocolate)
-         {
-            alert (`El monto del dinero es insuficiente, le falta abonar $${montoBebida-montoEscrito}`)
-            montoEscrito = Number (prompt("Ingrese el monto de la bebida selecionada"))
-         }
-
-         if (montoEscrito > montoChocolate) {
-            alert (`${nombre} Su vuelto es $${montoEscrito - montoChocolate}`) 
-         }
-         
-         alert(`${nombre} "Gracias por su compra" ¡PRECAUCION ESTA MUY CALIENTE!`)
-         
-         elegir = Number(prompt(nombre + "Elija la opcion que desea tomar(Ingresando el numero): 1-CAFE / 2-CAPUCHINO / 3-CORTADO / 4-CHOCOLATE CALIENTE / 5-SALIR "))
-         eleccion()
-      }
-   break
-
-   case 5:      
-   {
-
-   }
-   break
+    const btn = document.createElement("button")
+    btn.innerText="ALTA PRODUCTO"
+    btn.classList.add("button")
+    btn.addEventListener("click", ()=>
+    {
+        cargarDatosProductos();
+    });
+    const adminNode = document.getElementById("Cargaprod")
+    adminNode.appendChild(btn);
 }
+
+
+function listarPro()
+{
+    const btn = document.createElement("button")
+    btn.innerText="LISTAR"
+    btn.classList.add("button")
+    btn.addEventListener("click", ()=>
+    {
+        listarProducto();
+    });
+    const adminNode = document.getElementById("Mostrar")
+    adminNode.appendChild(btn);  
+}
+
+function modPro()
+{
+    const btn = document.createElement("button")
+    btn.innerText="MODIFICAR"
+    btn.classList.add("button")
+    btn.addEventListener("click", ()=>
+    {
+        modificar();
+    });
+    const adminNode = document.getElementById("Modificar")
+    adminNode.appendChild(btn);  
+}
+
+function busPro()
+{
+    const btn = document.createElement("button")
+    btn.innerText="BUSCAR"
+    btn.classList.add("button")
+    btn.addEventListener("click", ()=>
+    {
+        let nombreABuscar = prompt ("Ingrese el id a buscar")
+        catalogoProdu.buscarProdu(nombreABuscar);
+    });
+    const adminNode = document.getElementById("Buscar")
+    adminNode.appendChild(btn);  
+}
+
+
+
+function fin()
+{
+    const btn = document.createElement("button")
+    btn.innerText="SALIR"
+    btn.classList.add("button")
+    btn.addEventListener("click", ()=>
+    {
+        salir();
+    });
+    const adminNode = document.getElementById("Finalizar")
+    adminNode.appendChild(btn);  
+}
+
+function salir (){
+    alert("Saludos");
+
+}
+
+
+
+function cargarDatosProductos()
+{
+    id = prompt("Ingrese el ID: ");
+    cate = prompt("Ingrese la categoria: ");
+    nombre = prompt("Ingrese el producto: ");
+    valor =  prompt("Ingrese Precio: ");
+    descri = prompt("Ingrese la Descripción: ");
+    cantidad = prompt("Ingrese la cantidad en stock: ");
+    imag = prompt("Ingrese la imagen: ");
+    let nuevo = new Producto (id, cate, nombre, valor, descri, cantidad, imag)
+    catalogoProdu.agregarProd(nuevo)//tiene que ser en el array y no en el constructor
+}
+
+
+
+function modificar () {
+    idmodificar = prompt ("Ingrese el id del prodcuto: ")
+    cate = prompt("Ingrese la categoria: ");
+    nombre = prompt("Ingrese el producto: ");
+    valor =  prompt("Ingrese Precio: ");
+    descri = prompt("Ingrese la Descripción: ");
+    cantidad = prompt("Ingrese la cantidad en stock: ");
+    imag = prompt("Ingrese la imagen: ");
+    catalogoProdu.modificarProdu(idmodificar, cate, nombre, valor, descri, cantidad, imag)
+    }
+
+
+
+function listarProducto() {
+
+    const nodoPrincipal = document.getElementById("contenedor")
+    nodoPrincipal.innerHTML="";
+    catalogoProdu.productos.forEach((producto)=>{
+
+        const divProducto = document.createElement("div")
+        divProducto.className=" col-lg-3 col-md-4 col-sm-6 "
+        divProducto.innerHTML=`
+                    <div class="marcoProducto">
+                        <div class="imagenProducto">
+                            <img src=${producto.imagen}>
+                        </div>
+                        <div class="textoProducto">
+                            <p>${producto.nombreProdu}</p>
+                            <p>$${producto.precio}</p>
+                            <hr>
+                            <div class="botonComprar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button class="button">COMPRAR</button>
+                            </div>
+                        </div>
+                    </div> `
+        nodoPrincipal.appendChild(divProducto);
+
+        //document.body.appendChild()a
+    })
+}
+
+
+
+/*
+function cobrar (monto) {
+    alert (`El total a abonar es de ${monto}`)
+    let recibo = Number(prompt(`Ingrese el dinero que desea abonar`))
+    if (recibo>monto || recibo==monto){
+        alert(`Su vuelto es $ ${recibo-monto}`)
+    }
+    else if (recibo<monto){
+        alert(`El dinero recibido es inferior al valor de la compra, restan $ ${monto-recibo}`)
+        while (recibo<monto){
+            let pedir = Number(prompt(`Ingrese el dinero restante`))
+            recibo = recibo + pedir
+            alert(`Restan $ ${monto-recibo}`)
+        }
+        alert(`Su vuelto es $ ${recibo-monto}`)
+    }
+}
+*/
+
